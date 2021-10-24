@@ -1,0 +1,19 @@
+---
+- name: create web users
+  hosts: localhost
+  tasks:
+     - name: create users
+       user:
+         name: "{{ item }}"
+         groups: wheel
+         password: "{{ 'student1' | password_hash( 'sha512' ) }}"
+       loop:
+         - oliver
+         - harry
+         - natasha
+
+     - name: create users
+       user:
+         name: mary
+         password: "{{ 'student2' | password_hash( 'sha512' ) }}"
+
